@@ -1,0 +1,93 @@
+.container {
+  padding: 2rem;
+  flex: 1 auto;
+  text-align: center;
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.products {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  justify-items: center;
+  margin: 0 5rem;
+}
+
+
+/* CARDS */
+
+.card {
+  display: flex;
+  flex-direction: column;
+  width: min-content;
+  padding: 1rem;
+  background: #c4c4c4;
+  border-radius: 4px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.25);
+  margin: 1rem 0;
+  text-align: start;
+}
+
+.card_container{
+  transition: all 0.2s ease-in-out;
+}
+
+.card_container:hover {
+  transform: scale(1.05);
+}
+.img_container {
+  width: 200px;
+  height: 200px;
+}
+
+img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 4px;
+}
+
+.card_title {
+  font-size: 1.25rem;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  margin: 0.5rem 0;
+  height: 3rem;
+}
+
+.add_button {
+  background: #898989;
+  color: #f5f5f5;
+  border: none;
+  outline: none;
+  border-radius: 4px;
+  padding: 0.25rem 2rem;
+  margin: 0.5rem 0;
+  transition: all 0.2s ease-in-out;
+  font-size: 0.9375rem;
+  z-index: 2;
+  position: relative;
+  bottom: 65px;
+}
+
+.add_button:hover {
+  transform: scale(1.05);
+}
+
+.icon svg {
+  width: 0.625rem;
+}
+
+.price {
+  display: flex;
+  justify-content: space-between;
+}
+
+.card_bottom {
+  height: 42px;
+}

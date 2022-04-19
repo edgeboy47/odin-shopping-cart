@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useContext } from "react";
+import { AppContext } from "../App";
 import styles from "./Header.module.css";
 import { Link } from "react-router-dom";
 import {
@@ -8,6 +9,8 @@ import {
 } from "react-icons/md";
 
 const Header = () => {
+
+  const {cart} = useContext(AppContext);
   return (
     <header>
       <Link to="/">
@@ -16,12 +19,18 @@ const Header = () => {
 
       <nav>
         <Link to="/products">
-          <MdSearch className={styles.icon} />
+          <div className={styles.icon}>
+            <MdSearch />
+          </div>
         </Link>
-        <Link to="/products/:id"> {/* TODO */}
-          <MdOutlineFavoriteBorder className={styles.icon} />
+        <Link to="/favourites">
+          <div className={styles.icon}>
+            <MdOutlineFavoriteBorder />
+          </div>
         </Link>
-        <MdShoppingCart className={styles.icon} />
+        <div className={styles.icon}>
+          <MdShoppingCart />{" "}{cart.length > 0 && <span>{cart.length}</span>}
+        </div>
       </nav>
     </header>
   );
