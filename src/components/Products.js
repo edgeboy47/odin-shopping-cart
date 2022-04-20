@@ -19,14 +19,14 @@ const Products = ({ products }) => {
 const ProductCard = ({ product }) => {
   return (
     <div className={styles.card_container}>
-      <Link to="/"> {/*TODO link to product details page */}
+      <Link to={`/products/${product.id}`} state={product}> {/*TODO link to product details page */}
         <div className={styles.card}>
           <div className={styles.img_container}>
             <img src={product.image} alt={product.name} />
           </div>
           <div className={styles.card_title}>{product.title}</div>
           <div className={styles.price}>
-            <span>${product.price}</span>{" "}
+            <span>${parseFloat(product.price).toFixed(2)}</span>{" "}
             <span className={styles.icon}>
               <MdOutlineFavoriteBorder />
             </span>

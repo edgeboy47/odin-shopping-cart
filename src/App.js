@@ -4,6 +4,7 @@ import Layout from "./components/Layout";
 import Products from "./components/Products";
 import Home from "./components/Home";
 import { createContext, useState, useEffect } from "react";
+import ProductDetails from "./components/ProductDetails";
 export const AppContext = createContext({});
 
 function App() {
@@ -31,7 +32,7 @@ function App() {
               path="/products"
               element={<Products products={products} />}
             />
-            {/* <Route path="/products/:id" element={} /> */}
+            <Route path="/products/:id" element={<ProductDetails />} />
           </Route>
         </Routes>
       </AppContext.Provider>
