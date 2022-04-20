@@ -8,9 +8,8 @@ import {
   MdOutlineFavoriteBorder,
 } from "react-icons/md";
 
-const Header = () => {
-
-  const {cart} = useContext(AppContext);
+const Header = ({ setIsCartOpen }) => {
+  const { cart } = useContext(AppContext);
   return (
     <header>
       <Link to="/">
@@ -28,8 +27,11 @@ const Header = () => {
             <MdOutlineFavoriteBorder />
           </div>
         </Link>
-        <div className={styles.icon}>
-          <MdShoppingCart />{" "}{cart.length > 0 && <span>{cart.length}</span>}
+        <div
+          className={styles.icon}
+          onClick={() => setIsCartOpen(true)}
+        >
+          <MdShoppingCart /> {cart.length > 0 && <span>{cart.length}</span>}
         </div>
       </nav>
     </header>
