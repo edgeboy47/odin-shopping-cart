@@ -15,22 +15,23 @@ const Cart = ({ isCartOpen, setIsCartOpen }) => {
           </div>
         </div>
         <div className={styles.cart_items}>
-          {cart.length > 0 && cart.map((item) => <CartItem item={item} />)}
+          {cart.length > 0 && cart.map((item) => <CartItem key={item.id} item={item} />)}
         </div>
       </div>
       <div
         className={`${styles.backdrop} ${isCartOpen ? styles.open : ""}`}
+        onClick={() => setIsCartOpen(false)}
       ></div>
     </>
   );
 };
 
 export default Cart;
-
+// TODO finish cart item component
 const CartItem = ({ item }) => {
   return (
     <div className={styles.cartItem}>
-      <div>
+      <div className={styles.img}>
         <img src={item.image} alt={item.title} />
       </div>
     </div>

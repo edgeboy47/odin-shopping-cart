@@ -3,15 +3,53 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Layout from "./components/Layout";
 import Products from "./components/Products";
 import Home from "./components/Home";
-import { createContext, useState, useEffect } from "react";
+import { createContext, useState, useReducer, useEffect } from "react";
 import ProductDetails from "./components/ProductDetails";
 export const AppContext = createContext({});
 
+const addToCart = (cart, product) => {
+  const isInCart = cart.find((item) => item.id === product.id);
+
+  // If product is already in cart, increase quantity, else add product to cart
+  return isInCart
+    ? cart.map((item) =>
+        item.id === product.id ? { ...item, count: item.count + 1 } : item
+      )
+    : [...cart, { ...product, count: 1 }];
+};
+
+const removeFromCart = (cart, id) => {
+  const isInCart = cart.find((item) => item.id === id);
+
+  // If product is in cart, decrease quantity. If quantity is 1, remove product from cart
+  if (isInCart) {
+    return isInCart.count === 1
+      ? cart.filter((item) => item.id !== id)
+      : cart.map((item) =>
+          item.id === id ? { ...item, count: item.count - 1 } : item
+        );
+  }
+
+  return cart;
+};
+
+const reducer = (state, action) => {
+  switch (action.type) {
+    case "ADD":
+      return addToCart(state, action.payload);
+
+    case "REMOVE":
+      return removeFromCart(state, action.payload);
+
+    default:
+      return state;
+  }
+};
+
 function App() {
-  const [cart, setCart] = useState([]);
+  const [cart, dispatch] = useReducer(reducer, []);
   const [products, setProducts] = useState([]);
 
-  //TODO useeffect to get products from api
   useEffect(() => {
     async function fetchData() {
       const response = await fetch("https://fakestoreapi.com/products");
@@ -24,7 +62,7 @@ function App() {
 
   return (
     <BrowserRouter>
-      <AppContext.Provider value={{ cart, setCart }}>
+      <AppContext.Provider value={{ cart, dispatch }}>
         <Routes>
           <Route element={<Layout />}>
             <Route path="/" element={<Home />} />

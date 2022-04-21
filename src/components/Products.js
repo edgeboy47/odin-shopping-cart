@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useContext } from "react";
 import styles from "./Products.module.css";
 import { MdOutlineFavoriteBorder } from "react-icons/md";
 import { Link } from "react-router-dom";
+import { AppContext } from "../App";
 
 const Products = ({ products }) => {
   return (
@@ -17,9 +18,11 @@ const Products = ({ products }) => {
 };
 
 const ProductCard = ({ product }) => {
+  const { dispatch } = useContext(AppContext);
   return (
     <div className={styles.card_container}>
-      <Link to={`/products/${product.id}`} state={product}> {/*TODO link to product details page */}
+      <Link to={`/products/${product.id}`} state={product}>
+        {" "}
         <div className={styles.card}>
           <div className={styles.img_container}>
             <img src={product.image} alt={product.name} />
@@ -34,7 +37,12 @@ const ProductCard = ({ product }) => {
           <div className={styles.card_bottom}></div>
         </div>
       </Link>
-      <button className={styles.add_button}>Add to Cart</button>
+      <button
+        onClick={() => dispatch({ type: "ADD", payload: product })}
+        className={styles.add_button}
+      >
+        Add to Cart
+      </button>
     </div>
   );
 };
