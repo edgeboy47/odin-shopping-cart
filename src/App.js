@@ -33,6 +33,12 @@ const removeFromCart = (cart, id) => {
   return cart;
 };
 
+const setCount = (cart, id, count) => {
+  return cart.map((item) =>
+    item.id === id ? { ...item, count: count } : item
+  );
+};
+
 const reducer = (state, action) => {
   switch (action.type) {
     case "ADD":
@@ -40,6 +46,11 @@ const reducer = (state, action) => {
 
     case "REMOVE":
       return removeFromCart(state, action.payload);
+
+    case "SET_COUNT":
+      return action.payload.count < 1
+        ? removeFromCart(state, action.payload.id)
+        : setCount(state, action.payload.id, action.payload.count);
 
     default:
       return state;
