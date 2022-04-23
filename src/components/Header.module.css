@@ -40,3 +40,19 @@ nav {
 svg{
   transform: scale(2.0);
 }
+
+.badge {
+  position: relative;
+  right: 5px;
+  top: -15px;
+  background: #111;
+  color: #eee;
+  padding: 0.125rem;
+  width: 28px;
+  height: 28px;
+  font-size: 0.75rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

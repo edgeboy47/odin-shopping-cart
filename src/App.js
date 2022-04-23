@@ -13,7 +13,7 @@ const addToCart = (cart, product) => {
   // If product is already in cart, increase quantity, else add product to cart
   return isInCart
     ? cart.map((item) =>
-        item.id === product.id ? { ...item, count: item.count + 1 } : item
+        item.id === product.id ? { ...item, count: parseInt(item.count) + 1 } : item
       )
     : [...cart, { ...product, count: 1 }];
 };
@@ -26,7 +26,7 @@ const removeFromCart = (cart, id) => {
     return isInCart.count === 1
       ? cart.filter((item) => item.id !== id)
       : cart.map((item) =>
-          item.id === id ? { ...item, count: item.count - 1 } : item
+          item.id === id ? { ...item, count: parseInt(item.count) - 1 } : item
         );
   }
 
@@ -35,7 +35,7 @@ const removeFromCart = (cart, id) => {
 
 const setCount = (cart, id, count) => {
   return cart.map((item) =>
-    item.id === id ? { ...item, count: count } : item
+    item.id === id ? { ...item, count: parseInt(count) } : item
   );
 };
 

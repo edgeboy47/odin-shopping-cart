@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 import {
   MdSearch,
   MdShoppingCart,
-  MdOutlineFavoriteBorder,
 } from "react-icons/md";
 
 const Header = ({ setIsCartOpen }) => {
@@ -22,16 +21,12 @@ const Header = ({ setIsCartOpen }) => {
             <MdSearch />
           </div>
         </Link>
-        <Link to="/favourites">
-          <div className={styles.icon}>
-            <MdOutlineFavoriteBorder />
-          </div>
-        </Link>
         <div
           className={styles.icon}
           onClick={() => setIsCartOpen(true)}
         >
-          <MdShoppingCart /> {cart.length > 0 && <span>{cart.length}</span>}
+          <MdShoppingCart /> {cart.length > 0 && <span className={styles.badge}>{parseInt(cart.reduce((a, b) => a + b.count, 0))}</span>}
+          {/* TODO style cart icon badge */}
         </div>
       </nav>
     </header>

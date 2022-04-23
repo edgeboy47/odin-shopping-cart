@@ -40,7 +40,6 @@ const Cart = ({ isCartOpen, setIsCartOpen }) => {
 };
 
 export default Cart;
-// TODO finish cart item component
 const CartItem = ({ item }) => {
   const { dispatch } = useContext(AppContext);
 

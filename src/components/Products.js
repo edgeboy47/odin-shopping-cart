@@ -1,6 +1,5 @@
 import React, { useContext } from "react";
 import styles from "./Products.module.css";
-import { MdOutlineFavoriteBorder } from "react-icons/md";
 import { Link } from "react-router-dom";
 import { AppContext } from "../App";
 
@@ -30,9 +29,6 @@ const ProductCard = ({ product }) => {
           <div className={styles.card_title}>{product.title}</div>
           <div className={styles.price}>
             <span>${parseFloat(product.price).toFixed(2)}</span>{" "}
-            <span className={styles.icon}>
-              <MdOutlineFavoriteBorder />
-            </span>
           </div>
           <div className={styles.card_bottom}></div>
         </div>
