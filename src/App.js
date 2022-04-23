@@ -13,7 +13,9 @@ const addToCart = (cart, product) => {
   // If product is already in cart, increase quantity, else add product to cart
   return isInCart
     ? cart.map((item) =>
-        item.id === product.id ? { ...item, count: parseInt(item.count) + 1 } : item
+        item.id === product.id
+          ? { ...item, count: parseInt(item.count) + 1 }
+          : item
       )
     : [...cart, { ...product, count: 1 }];
 };
@@ -72,7 +74,7 @@ function App() {
   }, []);
 
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/">
       <AppContext.Provider value={{ cart, dispatch }}>
         <Routes>
           <Route element={<Layout />}>
