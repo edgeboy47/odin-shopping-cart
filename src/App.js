@@ -74,7 +74,7 @@ function App() {
   }, []);
 
   return (
-    <BrowserRouter basename="/">
+    <BrowserRouter basename="/odin-shopping-cart">
       <AppContext.Provider value={{ cart, dispatch }}>
         <Routes>
           <Route element={<Layout />}>
